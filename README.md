@@ -53,7 +53,7 @@ This script allows you to:
 4. Run the script:
 
    ```bash
-   python3 artist_info.py
+   python3 artist_info.py <artist_name>
    ```
 
 # License

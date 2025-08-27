@@ -55,25 +55,27 @@ def print_artist_data(sp, artist, albums, tracks):
         print(f"{idx+1}: {track['name']}")
 
 def main():
-    # Load .env values
-    load_dotenv()
-    id = os.getenv('CLIENT_ID')
-    secret = os.getenv('CLIENT_SECRET')
+    if (len(sys.argv) > 1):
+        name = sys.argv[1]
+        # Load .env values
+        load_dotenv()
+        id = os.getenv('CLIENT_ID')
+        secret = os.getenv('CLIENT_SECRET')
 
-    # Initialize Spotify API
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(id, secret))
+        # Initialize Spotify API 
+        sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(id, secret))
+        
+        artist = get_artist_info(sp=sp, name=name)
 
-    # Input Artist
-    name = input("Search an Artist: ")
-    artist = get_artist_info(sp=sp, name=name)
-
-    # Get albums, top tracks, then output
-    if artist:
-        albums = get_recent_albums(sp=sp, artist=artist)
-        tracks = get_top_tracks(sp=sp, artist=artist)
-        print_artist_data(sp=sp, artist=artist, albums=albums, tracks=tracks)
+        # Get albums, top tracks, then output
+        if artist:
+            albums = get_recent_albums(sp=sp, artist=artist)
+            tracks = get_top_tracks(sp=sp, artist=artist)
+            print_artist_data(sp=sp, artist=artist, albums=albums, tracks=tracks)
+        else:
+            print(f"Couldn't find artist {artist}")
     else:
-        print(f"Couldn't find artist {artist}")
+        print("No Artist Selected")
 
 if __name__ == "__main__":
     main()
