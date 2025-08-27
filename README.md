@@ -33,7 +33,7 @@ This script allows you to:
 1. Clone this repository or copy the script.  
 
    ```bash
-   git clone https://github.com/yourusername/spotify-artist-cli.git
+   git clone https://github.com/thereal-cc/Spotify-Artist-Info-CLI.git
    cd spotify-artist-cli
    ```
 
