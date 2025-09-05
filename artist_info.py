@@ -79,7 +79,7 @@ def main():
             tracks = get_top_tracks(sp=sp, artist=artist)
             print_artist_data(sp=sp, artist=artist, albums=albums, tracks=tracks)
         else:
-            print(f"Couldn't find artist {artist}")
+            print(f"Couldn't find artist {name}")
     else:
         print("No Artist Selected")
 
