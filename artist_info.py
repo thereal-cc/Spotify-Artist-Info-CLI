@@ -27,7 +27,7 @@ def get_recent_albums(sp, artist):
         name = album['name']
         if name not in unique:
             unique.add(name)
-
+            
     return unique
 
 """
@@ -56,7 +56,6 @@ def print_artist_data(sp, artist, albums, tracks):
 
 def main():
     if (len(sys.argv) > 1):
-        name = sys.argv[1]
         # Load .env values
         load_dotenv()
         id = os.getenv('CLIENT_ID')
@@ -64,7 +63,14 @@ def main():
 
         # Initialize Spotify API 
         sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(id, secret))
+        name = ""
         
+        if (len(sys.argv) > 2):
+            for i in range(1, len(sys.argv)):
+                name += (sys.argv[i] + " ")
+        else:
+            name = sys.argv[1]
+
         artist = get_artist_info(sp=sp, name=name)
 
         # Get albums, top tracks, then output
